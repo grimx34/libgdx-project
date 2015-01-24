@@ -11,32 +11,35 @@ public class Game extends ApplicationAdapter implements InputProcessor {
 	SpriteBatch batch;
 	Texture img;
 	float x = 300;
+	private int imgWidth;
 
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		img = new Texture("ship.png");
+		imgWidth = img.getHeight();
+
 		Gdx.input.setInputProcessor(this);
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClearColor((float)213/255, (float)38/255, (float)181/255, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(img, x-128, 200);
+		batch.draw(img, x-imgWidth, 200);
 		batch.end();
 	}
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 		x = screenX;
-		if (x < 128) {
-			x = 128;
+		if (x < (imgWidth/2)) {
+			x = (imgWidth/2);
 		}
-		if(x > Gdx.graphics.getWidth()-128){
-				x = Gdx.graphics.getWidth()-128;
+		if(x > Gdx.graphics.getWidth()-(imgWidth/2)){
+				x = Gdx.graphics.getWidth()-(imgWidth/2);
 			}
 		return false;
 	}
