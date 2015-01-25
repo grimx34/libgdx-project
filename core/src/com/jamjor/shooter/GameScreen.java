@@ -16,7 +16,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class GameScreen implements Screen, InputProcessor {
     private Game game;
 
-    private BitmapFont timeText;
+    private BitmapFont timeText, limit;
 
     private SpriteBatch spriteBatch;
     private Texture player;
@@ -43,6 +43,10 @@ public class GameScreen implements Screen, InputProcessor {
         timeText.setColor(Color.BLACK);
         timeText.setScale(4);
 
+        limit = new BitmapFont();
+        limit.setColor(Color.BLACK);
+        limit.setScale(4);
+
         Gdx.input.setInputProcessor(this);
     }
 
@@ -54,10 +58,11 @@ public class GameScreen implements Screen, InputProcessor {
         spriteBatch.begin();
         spriteBatch.draw(player, playerX, 200);
         timeText.draw(spriteBatch, Float.toString(1f/time), 600, 100);
+        limit.draw(spriteBatch, Float.toString(i), 200, 100);
         spriteBatch.end();
 
         if(i > 1000)
-            game.setScreen(new GameScreen(game));
+            game.setScreen(new MainMenuScreen(game));
 
         time = time * 0.9f + delta * 0.1f;
 

@@ -33,7 +33,7 @@ public class SplshScreen implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
-        splsh.draw(spriteBatch, "A JamJor Games Production", 300, 800);
+        splsh.draw(spriteBatch, "A JamJor Games Production", 200,950);
         spriteBatch.end();
 
         if(Gdx.input.justTouched())
